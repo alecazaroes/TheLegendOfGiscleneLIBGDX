@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="16" tileheight="16" nextobjectid="34">
+ <tileset firstgid="1" name="link_house_itens" tilewidth="16" tileheight="16" tilecount="900" columns="30">
+  <image source="link_house_itens.png" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="901" name="link_house" tilewidth="16" tileheight="16" tilecount="900" columns="30">
+  <image source="link_house.png" width="480" height="480"/>
+ </tileset>
+ <layer name="background" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJwNwwc21wEAAOBf/K06gpHVcASaaBxBSZJxBLOh8hSi5E8ZpTyyV0cgEcIRMjIKRyDf995XHxkEL31lg402+dpmW3zjW1t9Z5th+x3wq4MOOeyIo4457oSTTjntN2ec9btz/nDeBX+66JLL/nLFVdf87bobbrrlH7fdcdc9//rPfQ889Mhj/xuEguCUEUYaMspoY4w1ztOeMd4EE03yrMmmmGqa6Z7zvBe8aIaZZnnJy17xqte8brY55nrDm97ytnne8a753rPA+xb6wCIfWmyJpZZZboWVVlltjY987BOfWuszn/vCOsO22+F7P9hpl932+NFP9vrZL/Z5AnHZTDw=
+  </data>
+ </layer>
+ <layer name="objects" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzFy1k2gmEAgOF/J5HMa0iZtQaEhDWYM62BMhTWUJmHNYgyb8Vz+V134z3nuXyjqP1idNBJnC4SdNNDL330M8Bg8CYZIkWaYUYYZYxxJphkikzwTjPDLFnmmGeBHIvkWWKZleBdZY11Nthki20K7LDLHvscBO8hRxQpccwJp5xRpsI5F1wGb5Uada645oZb7rjngUeeeA7eFxq88kaTFu988MkX3/zwG/1/fzJ/LSY=
+  </data>
+ </layer>
+ <objectgroup name="blocked" offsetx="0.125" offsety="0">
+  <object id="21" x="48" y="64" width="16" height="16"/>
+  <object id="24" x="32" y="80" width="48" height="30.875"/>
+  <object id="25" x="80" y="88.0625" width="15.875" height="15.875"/>
+  <object id="26" x="175.913" y="106" width="32" height="22.0435"/>
+  <object id="27" x="128" y="32" width="32" height="39.9091"/>
+  <object id="28" x="176" y="32" width="32" height="39.9091"/>
+ </objectgroup>
+ <objectgroup name="door">
+  <object id="31" x="80" y="16" width="16" height="16"/>
+  <object id="33" x="80" y="32">
+   <polyline points="0,0 -48,0 -48,96 128,96 128,0 16,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="NPC"/>
+</map>

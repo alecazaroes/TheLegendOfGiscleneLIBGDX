@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="16" tileheight="16" nextobjectid="19">
+ <tileset firstgid="1" name="link_house" tilewidth="16" tileheight="16" tilecount="900" columns="30">
+  <image source="link_house.png" width="480" height="480"/>
+ </tileset>
+ <tileset firstgid="901" name="link_house_itens" tilewidth="16" tileheight="16" tilecount="900" columns="30">
+  <image source="link_house_itens.png" width="480" height="480"/>
+ </tileset>
+ <layer name="background" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJwNwwk2VQEAAND3fwlhCYkI5TQS8U2lwjGXiiUYEgpLMKeoJZQ0kZYgmYosARGZlqB7z7mXQkFw2Ste9ZrXzTLbG+aY603zzDdipVVWW2OtddZ73wc2+NBHPrbRJpttsdU2n9juUzvstMtnPrfbHnvts98BBx1y2BFfOOpLXznmuK9941vfOeF7J/3gRz/52S9OOe1XZ/zmrN+d84fzLrjoksv+9JcrrvrbNdfdcNM/brntX3fc9Z977nvgoUceG4SDIGTYE540ylNGG2Osp40z3gTPmOhZk0z2nCmmet40083wghfNNGKBhRZZbIm3vG2pd7zrPcsst8L/aAJCVQ==
+  </data>
+ </layer>
+ <layer name="objects" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzly1k2ggEAhuH/QlcZUtQajA20hgYzKzVVqDVUJMUaKpTkznPj9O/Bd85zznfzXi4EwRXX3HBLhSo17rjngToN/tb0W7R55IkOz3R5oUefV95C7cAfMuKdDz4ZM+GLKd/M+Am10UgQLLLEMivEWCVOgjXWSZKKzNsNf5MtttlhlzQZsuTYY598qC34RUqUOeCQI4454ZQzzrkItf9tv46qKPw=
+  </data>
+ </layer>
+ <objectgroup name="blocked">
+  <object id="2" x="135.909" y="32" width="72.0909" height="16"/>
+  <object id="3" x="120.043" y="48" width="39.9565" height="30.9091"/>
+  <object id="5" x="103.984" y="56" width="16" height="16"/>
+  <object id="6" x="160" y="55.9565" width="16" height="16"/>
+  <object id="7" x="32" y="32" width="32" height="16"/>
+  <object id="17" x="208" y="80">
+   <polyline points="0,0 0,-48 -112,-48"/>
+  </object>
+  <object id="14" x="80" y="32">
+   <polyline points="0,0 -48,0 -48,96 32,96"/>
+  </object>
+  <object id="15" x="128" y="128">
+   <polyline points="0,0 80,0 80,-32"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="door">
+  <object id="9" x="112" y="128" width="16" height="16"/>
+  <object id="10" x="208" y="80" width="16" height="16"/>
+  <object id="12" x="80" y="16" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="NPC"/>
+</map>
