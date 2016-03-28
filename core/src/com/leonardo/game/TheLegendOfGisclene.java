@@ -6,9 +6,12 @@ import com.leonardo.game.Screens.PlayScreen;
 
 //Classe irá extender de Game
 public class TheLegendOfGisclene extends Game {
-	//Variavel public que terá todo o conjunto de sprites que sera desenhado
+	//Batch é a variavel que armazenara todas as imagens a serem desenhadas no jogo e irá organiza-las de modo a deixar mais otimizado a renderização
 	public SpriteBatch batch;
-	
+	//Largura e altura da tela
+	public static final int V_WIDTH = 240;
+	public static final int V_HEIGHT = 160;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
