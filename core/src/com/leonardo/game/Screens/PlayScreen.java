@@ -1,31 +1,19 @@
 package com.leonardo.game.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.leonardo.game.TheLegendOfGisclene;
+import com.leonardo.game.GameManager;
 
-import java.awt.Desktop;
-
-import javax.swing.DesktopManager;
-
-/**
- * Created by PC Casa on 28/03/2016.
- */
 //Classe que irá implementar os metodos de Screen
 public class PlayScreen implements Screen{
-    //Variavel privada para referenciar a classe TheLegendOfGisclene
-    private TheLegendOfGisclene game;
-
+    private GameManager game;
     //Cria variaveis que irão gerenciar a camera do jogo
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -37,13 +25,14 @@ public class PlayScreen implements Screen{
 
     //No construtor fazemos os valores serem atribuidos as variaveis
     //Dizemos que a texture será a badlogic.jpg
-    public PlayScreen(TheLegendOfGisclene game){
-        this.game = game;
+    public PlayScreen(){
+        //Pega a referencia da instacia da classe
+        this.game = GameManager.getInstance();
         //Cria camera que seguira o jogador o jogo todo
         gamecam = new OrthographicCamera();
 
         //Gerencia como ira funcionar o resize da tela
-        gamePort = new StretchViewport(TheLegendOfGisclene.V_WIDTH, TheLegendOfGisclene.V_HEIGHT, gamecam);
+        gamePort = new StretchViewport(game.getWidth(), game.getHeight(), gamecam);
 
         //Tiled Map
         maploader = new TmxMapLoader();
@@ -93,7 +82,9 @@ public class PlayScreen implements Screen{
     @Override
     public void resize(int width, int height) {
         //Atualiza as dimenções do gamePort
-        gamePort.update(width, height);
+        game.setWidth(width);
+        game.setHeight(height);
+        gamePort.update(game.getWidth(), game.getHeight());
     }
 
     @Override
