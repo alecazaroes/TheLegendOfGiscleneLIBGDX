@@ -1,17 +1,16 @@
 package com.leonardo.game.desktop;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.leonardo.game.GameManager;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-        GameManager gameManager = GameManager.getInstance();
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(gameManager, config);
+		new LwjglApplication(new GameManager(), config);
         //Configura tamanhos iniciais da tela
-		config.width = gameManager.getWidth();
-		config.height = gameManager.getHeight();
+		config.width = GameManager.V_WIDTH;
+		config.height = GameManager.V_HEIGHT;
+		config.fullscreen = false;
 	}
 }
