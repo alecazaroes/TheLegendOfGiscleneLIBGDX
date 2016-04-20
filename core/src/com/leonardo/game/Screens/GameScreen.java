@@ -29,7 +29,7 @@ import com.leonardo.game.Sprites.Player;
  * Created by PC Casa on 28/03/2016.
  */
 //Classe que irá implementar os metodos de Screen
-public class ScreenGame implements Screen{
+public class GameScreen implements Screen{
     //Variavel privada para referenciar a classe GameManager
     private GameManager game;
     private TextureAtlas atlas;
@@ -48,20 +48,20 @@ public class ScreenGame implements Screen{
     
     private Player player;
     //No construtor fazemos os valores serem atribuidos as variaveis
-    public ScreenGame(GameManager game){
+    public GameScreen(){
         atlas = new TextureAtlas("Player_animation.pack");
 
-        this.game = game;
+        game = GameManager.getInstance();
         //Cria camera que seguira o jogador o jogo todo
         gamecam = new OrthographicCamera();
 
         //Gerencia como ira funcionar o resize da tela
-        gamePort = new StretchViewport(GameManager.V_WIDTH / GameManager.PPM, GameManager.V_HEIGHT / GameManager.PPM, gamecam);
+        gamePort = new StretchViewport(game.getWidth() / game.getPPM(), game.getHeight() / game.getPPM(), gamecam);
 
         //Tiled Map
         maploader = new TmxMapLoader();
         map = maploader.load("link_house.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map, 1 / GameManager.PPM);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / game.getPPM());
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
         
         world = new World(new Vector2(0,0), true);
@@ -80,11 +80,11 @@ public class ScreenGame implements Screen{
             
             bdef.type = BodyDef.BodyType.StaticBody;
             //Seta a posição do objeto
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / GameManager.PPM, (rect.getY() + rect.getHeight() / 2) / GameManager.PPM);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
             
             body = world.createBody(bdef);
             
-            shape.setAsBox(rect.getWidth() / 2 / GameManager.PPM, rect.getHeight() / 2 / GameManager.PPM);
+            shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
             fdef.shape = shape;
             body.createFixture(fdef);
         }
@@ -95,11 +95,11 @@ public class ScreenGame implements Screen{
             
             bdef.type = BodyDef.BodyType.StaticBody;
             //Seta a posição do objeto
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / GameManager.PPM, (rect.getY() + rect.getHeight() / 2) / GameManager.PPM);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
             
             body = world.createBody(bdef);
             
-            shape.setAsBox(rect.getWidth() / 2 / GameManager.PPM, rect.getHeight() / 2 / GameManager.PPM);
+            shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
             fdef.shape = shape;
             body.createFixture(fdef);
         }
@@ -166,9 +166,8 @@ public class ScreenGame implements Screen{
         renderer.render();
 
         b2dr.render(world, gamecam.combined);
-        game.batch.setProjectionMatrix(gamecam.combined);
         //Seta qual projexão sera usada pelo Batch
-        //game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
         game.batch.end();

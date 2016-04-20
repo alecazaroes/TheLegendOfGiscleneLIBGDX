@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.leonardo.game.GameManager;
-import com.leonardo.game.Screens.ScreenGame;
+import com.leonardo.game.Screens.GameScreen;
 
 /**
  *
@@ -26,12 +26,12 @@ public class Player extends Sprite{
     public float velY;
     private TextureRegion playerStand;
     
-    public Player(World world, ScreenGame screen){
+    public Player(World world, GameScreen screen){
         super(screen.getAtlas().findRegion("sprite_sheet_player"));
         this.world = world;
         definePlayer();
         playerStand = new TextureRegion(getTexture(), 0,0, 19,26);
-        setBounds(0,0,19 / GameManager.PPM, 26 / GameManager.PPM);
+        setBounds(0,0,19 / GameManager.getInstance().getPPM(), 26 / GameManager.getInstance().getPPM());
         setRegion(playerStand);
     }
 
@@ -41,15 +41,15 @@ public class Player extends Sprite{
     
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32 / GameManager.PPM,32 / GameManager.PPM);
-        this.velX = 32 / GameManager.PPM;
-        this.velY = 32 / GameManager.PPM;
+        bdef.position.set(32 / GameManager.getInstance().getPPM(),32 / GameManager.getInstance().getPPM());
+        this.velX = 32 / GameManager.getInstance().getPPM();
+        this.velY = 32 / GameManager.getInstance().getPPM();
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
         
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(6 / GameManager.PPM, 6 / GameManager.PPM);
+        shape.setAsBox(6 / GameManager.getInstance().getPPM(), 6 / GameManager.getInstance().getPPM());
         
         fdef.shape = shape;
         b2body.createFixture(fdef);

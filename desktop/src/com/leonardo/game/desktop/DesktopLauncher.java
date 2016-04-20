@@ -6,11 +6,12 @@ import com.leonardo.game.GameManager;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
+		GameManager gameManager = GameManager.getInstance();
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new GameManager(), config);
-        //Configura tamanhos iniciais da tela
-		config.width = GameManager.V_WIDTH;
-		config.height = GameManager.V_HEIGHT;
+		new LwjglApplication(gameManager, config);
+		//Configura tamanhos iniciais da tela
+		config.width = gameManager.getWidth();
+		config.height = gameManager.getHeight();
 		config.fullscreen = false;
 	}
 }
