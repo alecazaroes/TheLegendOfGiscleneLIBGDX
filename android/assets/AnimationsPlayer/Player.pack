@@ -1,0 +1,156 @@
+
+Player.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Boomerangue_Down/boomerangue_down_strip6
+  rotate: false
+  xy: 0, 0
+  size: 294, 45
+  orig: 294, 45
+  offset: 0, 0
+  index: -1
+
+Player2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Boomerangue_Right/boomerangue_right_strip6
+  rotate: false
+  xy: 0, 0
+  size: 294, 45
+  orig: 294, 45
+  offset: 0, 0
+  index: -1
+
+Player3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Boomerangue_Up/boomerangue_up_strip6
+  rotate: false
+  xy: 0, 0
+  size: 294, 45
+  orig: 294, 45
+  offset: 0, 0
+  index: -1
+
+Player4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Down/attack_down_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Right/attack_right_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Up/attack_up_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Down/move_down_strip10
+  rotate: false
+  xy: 0, 0
+  size: 490, 45
+  orig: 490, 45
+  offset: 0, 0
+  index: -1
+
+Player8.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Right/move_right_strip10
+  rotate: false
+  xy: 0, 0
+  size: 490, 45
+  orig: 490, 45
+  offset: 0, 0
+  index: -1
+
+Player9.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Up/move_up_strip10
+  rotate: false
+  xy: 0, 0
+  size: 490, 45
+  orig: 490, 45
+  offset: 0, 0
+  index: -1
+
+Player10.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Roll_Down/roll_down_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player11.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Roll_Right/roll_right_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player12.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Roll_Up/roll_up_strip8
+  rotate: false
+  xy: 0, 0
+  size: 392, 45
+  orig: 392, 45
+  offset: 0, 0
+  index: -1
+
+Player13.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Stands/stand_strip3
+  rotate: false
+  xy: 0, 0
+  size: 147, 45
+  orig: 147, 45
+  offset: 0, 0
+  index: -1
