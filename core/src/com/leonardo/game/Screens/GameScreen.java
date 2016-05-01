@@ -42,6 +42,7 @@ public class GameScreen implements Screen{
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private Rectangle screenDimensions;
 
     private World world;
     private Box2DDebugRenderer b2dr;
@@ -49,9 +50,11 @@ public class GameScreen implements Screen{
     private Player player;
     //No construtor fazemos os valores serem atribuidos as variaveis
     public GameScreen(){
-        atlas = new TextureAtlas("Player_animation.pack");
+
+        atlas = new TextureAtlas("AnimationsPlayer\\Player.pack");
 
         game = GameManager.getInstance();
+
         //Cria camera que seguira o jogador o jogo todo
         gamecam = new OrthographicCamera();
 
@@ -60,49 +63,59 @@ public class GameScreen implements Screen{
 
         //Tiled Map
         maploader = new TmxMapLoader();
-        map = maploader.load("link_house.tmx");
+        //defineScreen("South_Hyrule_Field.tmx");
+        defineScreen("link_house.tmx");
+    }
+
+    public void defineScreen(String level){
+        map = maploader.load(level);
         renderer = new OrthogonalTiledMapRenderer(map, 1 / game.getPPM());
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
-        
+
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
-        
+
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
-        
+
         player = new Player(world, this);
-        
+
         //Desenha os objetos bloqueados
         for (MapObject object : map.getLayers().get("blocked").getObjects()) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            
+
             bdef.type = BodyDef.BodyType.StaticBody;
             //Seta a posição do objeto
             bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
-            
+
             body = world.createBody(bdef);
-            
+
             shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
             fdef.shape = shape;
             body.createFixture(fdef);
         }
-        
+
         //Desenha as portas
         for (MapObject object : map.getLayers().get(3).getObjects()) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            
+
             bdef.type = BodyDef.BodyType.StaticBody;
             //Seta a posição do objeto
             bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
-            
+
             body = world.createBody(bdef);
-            
+
             shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
             fdef.shape = shape;
             body.createFixture(fdef);
         }
+            MapObject object = map.getLayers().get(5).getObjects().get(0);
+            screenDimensions = ((RectangleMapObject) object).getRectangle();
+        System.out.println(screenDimensions.getWidth()/ game.getPPM());
+        System.out.println(player.getBody().getPosition());
+
     }
 
     public TextureAtlas getAtlas(){
@@ -115,36 +128,45 @@ public class GameScreen implements Screen{
     //Metodo para pegar qualqeur input do player
     public void handleInput(float dt){
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            player.velY = 1;
+            player.moveUp();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            player.velY = -1;
+            player.moveDown();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            player.velX = -1;
+            player.moveLeft();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            player.velX = 1;
+            player.moveRight();
         }
         if(!Gdx.input.isKeyPressed(Input.Keys.UP) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            player.velY = 0;
+            player.stopedPlayerY();
         }
         if(!Gdx.input.isKeyPressed(Input.Keys.LEFT) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            player.velX = 0;
+            player.stopedPlayerX();
         }
-        player.b2body.setLinearVelocity(player.velX, player.velY);
+        if(Gdx.input.isKeyJustPressed(62)){
+            player.stopedPlayer();
+            player.setAttackSword(true);
+        }
     }
 
     //Metodo para atualizar informações da classe
     public void update(float dt){
         handleInput(dt);
         
-        world.step(1/60f, 6, 2);
+        world.step(1 / 60f, 6, 2);
 
         player.update(dt);
-        
+
         //Chama o Metodo Update da camera
-        gamecam.update();
+        //gamecam.position.set(player.getX(), player.getY(), 0);
+        gamecam.position.set(player.getX(), player.getY(), 0);
+        if(checkLimit()){
+            //Chama o Metodo Update da camera
+            gamecam.position.set(player.getX(), player.getY(), 0);
+            gamecam.update();
+        }
         //Diz que o render deve ser apenas o campo de visão da camera
         renderer.setView(gamecam);
     }
@@ -173,6 +195,49 @@ public class GameScreen implements Screen{
         game.batch.end();
     }
 
+    public boolean checkBborderBottom(){
+        float inferior =gamecam.position.y;
+        //System.out.println("Posição em y:" + gamecam.position.y);
+        if(inferior<0.9f && checkBborderTop()) {
+            return false;
+
+        }
+        return true;
+    }
+
+    public boolean checkBborderTop(){
+        float inferior =gamecam.position.y;
+        //System.out.println("Posição em y:" + gamecam.position.y);
+        if(inferior>6.0f && checkBborderBottom()){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkBborderLeft(){
+        float inferior =gamecam.position.x;
+        //System.out.println("Posição em x:" + gamecam.position.x);
+        if(inferior<1.22f && checkBborderRight()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkBborderRight(){
+        float inferior =gamecam.position.x;
+        //System.out.println("Posição em x:" + gamecam.position.x);
+        if(inferior>8.82f && checkBborderLeft()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkLimit(){
+        if(!checkBborderBottom()||!checkBborderTop() ||!checkBborderLeft() ||!checkBborderRight()){
+            return true;
+        }
+        return false;
+    }
     @Override
     public void resize(int width, int height) {
         //Atualiza as dimenções do gamePort
