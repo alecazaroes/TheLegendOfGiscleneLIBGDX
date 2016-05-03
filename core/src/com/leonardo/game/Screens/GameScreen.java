@@ -22,7 +22,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.leonardo.game.GameManager;
+import com.leonardo.game.Sprites.Octorock;
 import com.leonardo.game.Sprites.Player;
+import com.leonardo.game.Tools.B2WorldCreator;
+import com.leonardo.game.Tools.WorldContactListener;
 
 
 /**
@@ -32,7 +35,6 @@ import com.leonardo.game.Sprites.Player;
 public class GameScreen implements Screen{
     //Variavel privada para referenciar a classe GameManager
     private GameManager game;
-    private TextureAtlas atlas;
 
     //Cria variaveis que irão gerenciar a camera do jogo
     private OrthographicCamera gamecam;
@@ -48,11 +50,9 @@ public class GameScreen implements Screen{
     private Box2DDebugRenderer b2dr;
     
     private Player player;
+    private Octorock enemie;
     //No construtor fazemos os valores serem atribuidos as variaveis
     public GameScreen(){
-
-        atlas = new TextureAtlas("AnimationsPlayer\\Player.pack");
-
         game = GameManager.getInstance();
 
         //Cria camera que seguira o jogador o jogo todo
@@ -64,7 +64,7 @@ public class GameScreen implements Screen{
         //Tiled Map
         maploader = new TmxMapLoader();
         //defineScreen("South_Hyrule_Field.tmx");
-        defineScreen("link_house.tmx");
+        defineScreen("South_Hyrule_Field.tmx");
     }
 
     public void defineScreen(String level){
@@ -74,54 +74,19 @@ public class GameScreen implements Screen{
 
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
-
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef();
-        Body body;
+        new B2WorldCreator(world, map);
 
         player = new Player(world, this);
+        enemie = new Octorock(world, this);
 
-        //Desenha os objetos bloqueados
-        for (MapObject object : map.getLayers().get("blocked").getObjects()) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            //Seta a posição do objeto
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-
-        //Desenha as portas
-        for (MapObject object : map.getLayers().get(3).getObjects()) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            //Seta a posição do objeto
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / game.getPPM(), (rect.getY() + rect.getHeight() / 2) / game.getPPM());
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox(rect.getWidth() / 2 / game.getPPM(), rect.getHeight() / 2 / game.getPPM());
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-            MapObject object = map.getLayers().get(5).getObjects().get(0);
-            screenDimensions = ((RectangleMapObject) object).getRectangle();
+        world.setContactListener(new WorldContactListener(player));
+        MapObject object = map.getLayers().get(5).getObjects().get(0);
+        screenDimensions = ((RectangleMapObject) object).getRectangle();
         System.out.println(screenDimensions.getWidth()/ game.getPPM());
         System.out.println(player.getBody().getPosition());
 
     }
 
-    public TextureAtlas getAtlas(){
-        return atlas;
-    }
-    
     @Override
     public void show() {
     }
@@ -149,6 +114,7 @@ public class GameScreen implements Screen{
             player.stopedPlayer();
             player.setAttackSword(true);
         }
+        enemie.setAttack(true);
     }
 
     //Metodo para atualizar informações da classe
@@ -158,6 +124,7 @@ public class GameScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+        enemie.update(dt);
 
         //Chama o Metodo Update da camera
         //gamecam.position.set(player.getX(), player.getY(), 0);
@@ -192,6 +159,7 @@ public class GameScreen implements Screen{
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        enemie.draw(game.batch);
         game.batch.end();
     }
 
@@ -261,6 +229,9 @@ public class GameScreen implements Screen{
 
     @Override
     public void dispose() {
-        
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="63" height="43" tilewidth="16" tileheight="16" nextobjectid="114">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="63" height="43" tilewidth="16" tileheight="16" nextobjectid="115">
  <tileset firstgid="1" name="South_Hyrule_Field" tilewidth="16" tileheight="16" tilecount="2709" columns="63">
   <image source="South_Hyrule_Field.png" width="1008" height="688"/>
  </tileset>
@@ -89,6 +89,9 @@
  </objectgroup>
  <objectgroup name="door"/>
  <objectgroup name="NPC"/>
+ <objectgroup name="Screen">
+  <object id="114" x="0" y="0" width="1008" height="688"/>
+ </objectgroup>
  <objectgroup name="chest"/>
  <objectgroup name="vaso"/>
 </map>

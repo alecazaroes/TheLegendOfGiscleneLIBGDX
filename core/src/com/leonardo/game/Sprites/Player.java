@@ -7,9 +7,12 @@ package com.leonardo.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -23,7 +26,8 @@ import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
  * @author leonardo.fpinheiro1
  */
 public class Player extends Sprite{
-    public enum State {
+    private boolean drawRegion;
+    private enum State {
         MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
         STAND_UP, STAND_DOWN, STAND_LEFT, STAND_RIGHT,
         ATTACKSWORD_UP, ATTACKSWORD_DOWN, ATTACKSWORD_LEFT, ATTACKSWORD_RIGHT,
@@ -58,21 +62,23 @@ public class Player extends Sprite{
     private Animation playerAttackBoomerangueRight;
     private Animation playerAttackBoomerangueUp;
     private Animation playerAttackBoomerangueDown;
-
+    private TextureAtlas atlas;
     //Ataques
     private boolean attackSword;
     private boolean attackBoomerangue;
 
     public Player(World world, GameScreen screen){
-        super(screen.getAtlas().findRegion("Stands/stand_strip3"));
-        this.screen = screen;
-        currentState = State.STAND_DOWN;
-        previousState = State.STAND_DOWN;
+        atlas = new TextureAtlas("AnimationsPlayer\\Player.pack");
+        this.setRegion(getAtlas().findRegion("Stands/stand_strip3"));
+        this.screen     = screen;
+        currentState    = State.STAND_DOWN;
+        previousState   = State.STAND_DOWN;
         directionEye    = DirectionEye.DOWN;
+        drawRegion      = true;
 
-        stateTimer = 0;
-        attackSword = false;
-        inAnimation = false;
+        stateTimer      = 0;
+        attackSword     = false;
+        inAnimation     = false;
 
         playerMoveDown          = loadAnimation("Move_Down/move_down_strip10", 10, 0.07f, 0,49, 45);
         playerMoveRight         = loadAnimation("Move_Right/move_right_strip10", 10, 0.07f, 0,49, 45);
@@ -80,7 +86,7 @@ public class Player extends Sprite{
 
         playerAttackSwordDown   = loadAnimation("Attack_Down/attack_down_strip8", 8, 0.05f, 0,49, 45);
         playerAttackSwordRight  = loadAnimation("Attack_Right/attack_right_strip8", 8, 0.05f, 0, 49, 45);
-        playerAttackSwordUp     = loadAnimation("Attack_Up/attack_up_strip8", 8, 0.05f, 0,49, 45);
+        playerAttackSwordUp     = loadAnimation("Attack_Up/attack_up_strip8", 8, 0.05f, 0, 49, 45);
 
         playerStandDown         = loadTexture("Stands/stand_strip3", 0, 0, 49, 45);
         playerStandRight        = loadTexture("Stands/stand_strip3", 49, 0, 49, 45);
@@ -89,13 +95,18 @@ public class Player extends Sprite{
         this.world = world;
         definePlayer();
         directionStand          = playerStandDown;
-        setRegion(playerStandDown);
+        if(drawRegion) {
+            setRegion(playerStandDown);
+        }
     }
 
+    public Player getPlayer(){
+        return this;
+    }
     public Animation loadAnimation(String region, int amountFrames, float timePerFrame, int startY, int width, int height){
         //Carrega animações do player
         Animation animationLoad;
-        this.setRegion(screen.getAtlas().findRegion(region));
+        this.setRegion(this.getAtlas().findRegion(region));
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 0; i < amountFrames; i++){
             frames.add(new TextureRegion(getTexture(), i * width, startY, width, height));
@@ -107,7 +118,7 @@ public class Player extends Sprite{
 
     public TextureRegion loadTexture(String region, int starX, int startY, int width, int height){
         TextureRegion textureLoad;
-        this.setRegion(screen.getAtlas().findRegion(region));
+        this.setRegion(getAtlas().findRegion(region));
         textureLoad = new TextureRegion(getTexture(), starX, startY, width, height);
         return textureLoad;
     }
@@ -115,7 +126,9 @@ public class Player extends Sprite{
     public void update(float deltatime){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getWidth() / 3.5f);
         TextureRegion region = getFrame(deltatime);
-        setRegion(region);
+        if(drawRegion) {
+            setRegion(region);
+        }
         /*
         setBounds(float x, float y, float width, float height)
         Sets the position and size of the sprite when drawn, before scaling and rotation are applied.
@@ -266,6 +279,14 @@ public class Player extends Sprite{
         
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+        CircleShape areaOfAttack = new CircleShape();
+        areaOfAttack.setRadius(20f / GameManager.getInstance().getPPM());
+        areaOfAttack.setPosition(new Vector2(areaOfAttack.getPosition().x, areaOfAttack.getPosition().y + (6 / GameManager.getInstance().getPPM())));
+        fdef.shape = areaOfAttack;
+        fdef.isSensor = true;
+
+        b2body.createFixture(fdef).setUserData("areaOfAttack");
     }
 
     public Body getBody() {
@@ -321,5 +342,9 @@ public class Player extends Sprite{
     }
     public void stopedPlayerY(){
         this.velY = 0;
+    }
+
+    public TextureAtlas getAtlas(){
+        return atlas;
     }
 }
