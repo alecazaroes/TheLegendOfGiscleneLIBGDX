@@ -1,0 +1,84 @@
+
+Octorock.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Down/attack_down_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Right/attack_right_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack_Up/attack_up_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Down/move_down_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Right/move_right_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Move_Up/move_up_strip2
+  rotate: false
+  xy: 0, 0
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+
+Octorock7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Projeteis/projeteis_strip3
+  rotate: false
+  xy: 0, 0
+  size: 78, 22
+  orig: 78, 22
+  offset: 0, 0
+  index: -1
