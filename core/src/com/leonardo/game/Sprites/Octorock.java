@@ -17,8 +17,11 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.leonardo.game.A_Star.Node;
 import com.leonardo.game.GameManager;
 import com.leonardo.game.Screens.GameScreen;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -104,10 +107,30 @@ public class Octorock extends Sprite{
         return textureLoad;
     }
 
-    public void update(float deltatime){
+    public void update(float deltatime, ArrayList<Node> path, Player player){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getWidth() / 2f);
         TextureRegion region = getFrame(deltatime);
         setRegion(region);
+
+        if(path.size() > 1 ) {
+            Node caminho = path.get(0);
+            if (b2body.getPosition().x < caminho.worldPosition.x) {
+                this.moveRight();
+            }
+            if (b2body.getPosition().x > caminho.worldPosition.x) {
+                this.moveLeft();
+            }
+            if (b2body.getPosition().y > caminho.worldPosition.y) {
+                this.moveDown();
+            }
+            if (b2body.getPosition().y < caminho.worldPosition.y) {
+                this.moveUp();
+            }
+
+            if (b2body.getPosition().y == caminho.worldPosition.x && b2body.getPosition().y == caminho.worldPosition.y) {
+                path.remove(0);
+            }
+        }
         /*
         setBounds(float x, float y, float width, float height)
         Sets the position and size of the sprite when drawn, before scaling and rotation are applied.

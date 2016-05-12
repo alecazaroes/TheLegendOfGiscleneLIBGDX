@@ -47,6 +47,7 @@ public class B2WorldCreator {
 
             shape.setAsBox(rect.getWidth() / 2 / GameManager.getInstance().getPPM(), rect.getHeight() / 2 / GameManager.getInstance().getPPM());
             fdef.shape = shape;
+            fdef.isSensor = true;
             body.createFixture(fdef);
         }
     }
@@ -68,6 +69,7 @@ public class B2WorldCreator {
 
             shape.setAsBox(rect.getWidth() / 2 / GameManager.getInstance().getPPM(), rect.getHeight() / 2 / GameManager.getInstance().getPPM());
             fdef.shape = shape;
+            fdef.isSensor = true;
             body.createFixture(fdef);
         }
     }

@@ -15,7 +15,7 @@ public class MenuScreen extends State implements Screen {
     private GameManager game;
 
     //Variavel privada para carrega Textura
-    private Texture backgrouund;
+    private Texture background;
 
     //Cria variaveis que irão gerenciar a camera do jogo
     private OrthographicCamera gamecam;
@@ -23,7 +23,7 @@ public class MenuScreen extends State implements Screen {
 
     public MenuScreen() {
         //background recebe imagem menu
-        backgrouund = new Texture("menu.jpg");
+        background = new Texture("menu.jpg");
         this.game = GameManager.getInstance();
 
         //Cria camera que seguira o jogador o jogo todo
@@ -59,7 +59,7 @@ public class MenuScreen extends State implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(backgrouund, 0, 0, game.getWidth(), game.getHeight());
+        game.batch.draw(background, 0, 0, game.getWidth(), game.getHeight());
         game.batch.end();
         update(delta);
     }

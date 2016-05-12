@@ -29,9 +29,9 @@ public class WorldContactListener implements ContactListener {
 
             if(object.getUserData() != null && Octorock.class.isAssignableFrom(object.getUserData().getClass())){
                 if(player.isAttackSword()){
-                    Gdx.app.log("Player Attack", "OctoRock");
+                    //Gdx.app.log("Player Attack", "OctoRock");
                 }else{
-                    Gdx.app.log("Octorock Attack", "Player");
+                    //Gdx.app.log("Octorock Attack", "Player");
                 }
                 ((Octorock) object.getUserData()).onHit();
             }
@@ -40,7 +40,7 @@ public class WorldContactListener implements ContactListener {
 
     @Override
     public void endContact(Contact contact) {
-        Gdx.app.log("End Contact", "");
+        //Gdx.app.log("End Contact", "");
     }
 
     @Override

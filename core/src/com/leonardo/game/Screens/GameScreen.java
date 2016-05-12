@@ -3,8 +3,10 @@ package com.leonardo.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -21,11 +23,15 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.leonardo.game.A_Star.Grid;
+import com.leonardo.game.A_Star.Node;
 import com.leonardo.game.GameManager;
 import com.leonardo.game.Sprites.Octorock;
 import com.leonardo.game.Sprites.Player;
 import com.leonardo.game.Tools.B2WorldCreator;
 import com.leonardo.game.Tools.WorldContactListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -35,7 +41,7 @@ import com.leonardo.game.Tools.WorldContactListener;
 public class GameScreen implements Screen{
     //Variavel privada para referenciar a classe GameManager
     private GameManager game;
-
+    private Grid grid;
     //Cria variaveis que irão gerenciar a camera do jogo
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -51,10 +57,12 @@ public class GameScreen implements Screen{
     
     private Player player;
     private Octorock enemie;
+
+    //Variavel privada para carrega Textura
+    private ArrayList<Node> path;
     //No construtor fazemos os valores serem atribuidos as variaveis
     public GameScreen(){
         game = GameManager.getInstance();
-
         //Cria camera que seguira o jogador o jogo todo
         gamecam = new OrthographicCamera();
 
@@ -84,7 +92,7 @@ public class GameScreen implements Screen{
         screenDimensions = ((RectangleMapObject) object).getRectangle();
         System.out.println(screenDimensions.getWidth()/ game.getPPM());
         System.out.println(player.getBody().getPosition());
-
+        grid = new Grid(world, map, 16, (int)(screenDimensions.getWidth()),(int)(screenDimensions.getHeight()));
     }
 
     @Override
@@ -124,16 +132,21 @@ public class GameScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
-        enemie.update(dt);
+        path = grid.Find(enemie.b2body.getPosition(), player.b2body.getPosition());
+        enemie.update(dt, path, player);
+
+
 
         //Chama o Metodo Update da camera
         //gamecam.position.set(player.getX(), player.getY(), 0);
         gamecam.position.set(player.getX(), player.getY(), 0);
-        if(checkLimit()){
+        gamecam.update();
+        /*if(checkLimit()){
             //Chama o Metodo Update da camera
             gamecam.position.set(player.getX(), player.getY(), 0);
             gamecam.update();
         }
+        */
         //Diz que o render deve ser apenas o campo de visão da camera
         renderer.setView(gamecam);
     }
