@@ -20,7 +20,7 @@ public class Node {
         this.worldPosition = _worldPos;
         this.gridX = _gridX;
         this.gridY = _gridY;
-        nodeText = new Texture("node.png");
+        //nodeText = new Texture("node.png");
     }
 
     public int fCost(){

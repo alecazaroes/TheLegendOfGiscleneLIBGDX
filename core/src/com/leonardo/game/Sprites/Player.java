@@ -35,7 +35,6 @@ public class Player extends Sprite{
     };
     public State currentState;
     public State previousState;
-
     public enum DirectionEye{
         UP, DOWN, LEFT, RIGHT
     }
@@ -124,18 +123,19 @@ public class Player extends Sprite{
     }
 
     public void update(float deltatime){
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getWidth() / 3.5f);
         TextureRegion region = getFrame(deltatime);
         if(drawRegion) {
             setRegion(region);
         }
+        setPosition(b2body.getPosition().x, b2body.getPosition().y);
         /*
         setBounds(float x, float y, float width, float height)
         Sets the position and size of the sprite when drawn, before scaling and rotation are applied.
         */
-        setBounds(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getWidth() / 3.5f
-                , region.getRegionWidth() / GameManager.getInstance().getPPM(), region.getRegionHeight() / GameManager.getInstance().getPPM());
+        //setBounds(b2body.getPosition().x-(getWidth()/2), b2body.getPosition().y-(getHeight()/2-0.08f), 49 / GameManager.getInstance().getPPM(), 45 / GameManager.getInstance().getPPM());
+        setBounds(b2body.getPosition().x-(getWidth()/2), b2body.getPosition().y-(getHeight()/2-0.08f), 49 / GameManager.getInstance().getPPM(), 45 / GameManager.getInstance().getPPM());
         this.getBody().setLinearVelocity(this.velX, this.velY);
+
     }
 
     public TextureRegion getFrame(float deltatime){
@@ -267,16 +267,17 @@ public class Player extends Sprite{
 
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32 / GameManager.getInstance().getPPM(),32 / GameManager.getInstance().getPPM());
-        this.velX = 32 / GameManager.getInstance().getPPM();
-        this.velY = 32 / GameManager.getInstance().getPPM();
+        bdef.position.set(40 / GameManager.getInstance().getPPM(),40 / GameManager.getInstance().getPPM());
+        b2body = world.createBody(bdef);
+        this.velX = 1 / GameManager.getInstance().getPPM();
+        this.velY = 1 / GameManager.getInstance().getPPM();
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
         
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(5f / GameManager.getInstance().getPPM(), 4 / GameManager.getInstance().getPPM());
-        
+        shape.setAsBox(4f / GameManager.getInstance().getPPM(), 4 / GameManager.getInstance().getPPM());
+
         fdef.shape = shape;
         b2body.createFixture(fdef);
 

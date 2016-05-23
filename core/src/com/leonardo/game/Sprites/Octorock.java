@@ -111,8 +111,7 @@ public class Octorock extends Sprite{
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getWidth() / 2f);
         TextureRegion region = getFrame(deltatime);
         setRegion(region);
-
-        if(path.size() > 1 ) {
+        if(path.size() >= 1) {
             Node caminho = path.get(0);
             if (b2body.getPosition().x < caminho.worldPosition.x) {
                 this.moveRight();
@@ -239,7 +238,7 @@ public class Octorock extends Sprite{
 
     public void defineOctorock(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(40 / GameManager.getInstance().getPPM(),150 / GameManager.getInstance().getPPM());
+        bdef.position.set(40 / GameManager.getInstance().getPPM(),40 / GameManager.getInstance().getPPM());
         velX = 0f;
         velY = 0f;
         projVelX = 0;
@@ -249,7 +248,7 @@ public class Octorock extends Sprite{
         
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(7f / GameManager.getInstance().getPPM(), 5 / GameManager.getInstance().getPPM());
+        shape.setAsBox(4f / GameManager.getInstance().getPPM(), 4 / GameManager.getInstance().getPPM());
         
         fdef.shape = shape;
         fixture = b2body.createFixture(fdef);

@@ -15,15 +15,24 @@ public class MenuScreen extends State implements Screen {
     private GameManager game;
 
     //Variavel privada para carrega Textura
-    private Texture background;
+    private Texture backgrouund;
+    private Texture facil;
+    private Texture medio;
+    private Texture dificil;
+    private Texture atual;
+    private int estado;
 
-    //Cria variaveis que ir„o gerenciar a camera do jogo
+    //Cria variaveis que irÔøΩo gerenciar a camera do jogo
     private OrthographicCamera gamecam;
     private Viewport gamePort;
 
     public MenuScreen() {
         //background recebe imagem menu
-        background = new Texture("menu.jpg");
+        backgrouund = new Texture("Menu/menu.png");
+        facil = new Texture("Menu/facil.png");
+        medio = new Texture("Menu/medio.png");
+        dificil = new Texture("Menu/dificil.png");
+        atual = backgrouund;
         this.game = GameManager.getInstance();
 
         //Cria camera que seguira o jogador o jogo todo
@@ -40,12 +49,42 @@ public class MenuScreen extends State implements Screen {
 
     //Metodo para pegar qualqeur input do player
     public void handleInput(float dt){
-        //se apertar ESPA«O abre a proxima Screen
-        if(Gdx.input.isKeyJustPressed(62)) {
+        switch (estado) {
+            case 1:
+                atual = facil;
+                //APERTAR PARA BAIXO
+                if (Gdx.input.isKeyJustPressed(20)) {
+                    estado = 2;
+                }
+                break;
+            case 2:
+                atual = medio;
+                //APERTAR PARA CIMA
+                if (Gdx.input.isKeyJustPressed(19)) {
+                    estado = 1;
+                }
+                //APERTAR PARA BAIXO
+                else if (Gdx.input.isKeyJustPressed(20)) {
+                    estado = 3;
+                }
+                break;
+            case 3:
+                atual = dificil;
+                //APERTAR PARA CIMA
+                if(Gdx.input.isKeyJustPressed(19)){
+                    estado = 2;
+                }
+        }
+        //Apertar ENTER
+        if(Gdx.input.isKeyJustPressed(66) && estado == 0) {
+            atual = facil;
+            estado = 1;
+        }else if(Gdx.input.isKeyJustPressed(66) && estado > 0) {
             game.setScreen(new GameScreen());
             this.hide();
         }
     }
+
 
     //Metodo para atualizar informa√ß√µes da classe
     public void update(float dt){
@@ -54,12 +93,13 @@ public class MenuScreen extends State implements Screen {
         gamecam.update();
     }
 
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(background, 0, 0, game.getWidth(), game.getHeight());
+        game.batch.draw(atual, 0, 0, game.getWidth(), game.getHeight());
         game.batch.end();
         update(delta);
     }
