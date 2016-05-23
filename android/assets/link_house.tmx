@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="16" tileheight="16" nextobjectid="83">
- <tileset firstgid="1" name="link_house_itens" tilewidth="16" tileheight="16" tilecount="900" columns="30">
-  <image source="link_house_itens.png" width="480" height="480"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="8" tileheight="8" nextobjectid="23">
+ <tileset firstgid="1" name="link_house" tilewidth="8" tileheight="8" tilecount="600" columns="30">
+  <image source="link_house.png" width="241" height="160"/>
  </tileset>
- <tileset firstgid="901" name="link_house" tilewidth="16" tileheight="16" tilecount="900" columns="30">
-  <image source="link_house.png" width="480" height="480"/>
- </tileset>
- <layer name="background" width="15" height="10">
+ <layer name="background" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJwNwwc21wEAAOBf/K06gpHVcASaaBxBSZJxBLOh8hSi5E8ZpTyyV0cgEcIRMjIKRyDf995XHxkEL31lg402+dpmW3zjW1t9Z5th+x3wq4MOOeyIo4457oSTTjntN2ec9btz/nDeBX+66JLL/nLFVdf87bobbrrlH7fdcdc9//rPfQ889Mhj/xuEguCUEUYaMspoY4w1ztOeMd4EE03yrMmmmGqa6Z7zvBe8aIaZZnnJy17xqte8brY55nrDm97ytnne8a753rPA+xb6wCIfWmyJpZZZboWVVlltjY987BOfWuszn/vCOsO22+F7P9hpl932+NFP9vrZL/Z5AnHZTDw=
+   eJwV1YOyGAYAAMEX27Zt27Zt22hs27Zt27Zts0EbJ93O3H7DBQoICAhMEIISjOCEICShCE0YwhKO8EQgIpGITBSiEo3oxCAmsYhNHOISj/gkICGJSEwSkpKM5KQgJalITRrSko70ZCAjmchMFrKSjezkICe5yE0e8pKP/BSgIIUoTBGKUozilKAkpShNGcpSjvJUoCKVqEwVqlKN6tSgJrWoTR3qUo/6NKAhjWhME5rSjOa0oCWtaE0b2tKO9nSgI53oTBe60o3u/EUPetKL3vShL/3ozwAGMojBDGEowxjOCEYyitGMYSzjGM8EJjKJyUxhKtOYzgxmMovZzGEu85jPAhayiMUsYSnLWM4KVrKK1axhLetYzwY2sonNbGEr29jODnayi93sYS/72M8BDnKIwxzhKMc4zglOcorTnOEs5zjPBS5yictc4SrXuM4NbnKL29zhLve4zwMe8ojHPOEpz3jOC17yite84S3veM/ffOAjn/jMP/zLF77yje/84Ce/+M0fAgKJwAQhKMEITghCEorQhCEs4QhPBCISichEISrRiE4MYhKL2MQhLvGITwISkojEJCEpyUhOClKSitSkIS3pSE8GMpKJzGQhK9nITg5ykovc5CEv+chPAQpSiMIUoSjFKE4JSlKK0pShLOUoTwUqUonKVKEq1ahODWpSi9rUoS71qE8DGtKIxjShKc1oTgta0orWtKEt7WhPBzrSic50oSvd6M5f9KAnvehNH/rSj/4MYCCDGMwQhjKM4YxgJKMYzRjGMo7xTGAik5jMFKYyjenMYCazmM0c5jKP+SxgIYtYzBKWsozlrGAlq1jNGtayjvVsYCOb2MwWtrKN7exgJ7vYzR72so/9HOAghzjMEY5yjOOc4CSnOM0ZznKO81zgIpe4zBWuco3r3OAmt7jNHe5yj/s84CGPeMwTnvKM57zgJa94zRve8o73/M0HPvKJz/zDv3zhK9/4zg9+8ovf/OH/8QciMEEISjCCE4KQhCI0YQhLOMITgYhEIjJRiEo0ohODmMQiNnGISzzik4CEJCIxSUhKMpKTgpSkIjVpSEs60pOBjGQiM1nISjayk4Oc5CI3echLPvJTgIIUojBFKEoxilOCkpSiNGUoSznKU4GKVKIyVahKNapTg5r8B03FEA4=
   </data>
  </layer>
- <layer name="objects" width="15" height="10">
+ <layer name="objects" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJzFy1k2gmEAgOF/J5HMa0iZtQaEhDWYM62BMhTWUJmHNYgyb8Vz+V134z3nuXyjqP1idNBJnC4SdNNDL330M8Bg8CYZIkWaYUYYZYxxJphkikzwTjPDLFnmmGeBHIvkWWKZleBdZY11Nthki20K7LDLHvscBO8hRxQpccwJp5xRpsI5F1wGb5Uada645oZb7rjngUeeeA7eFxq88kaTFu988MkX3/zwG/1/fzJ/LSY=
+   eJztwTEBAAAAwqD1T20JT6AAAHgaCWAAAQ==
   </data>
  </layer>
- <objectgroup name="blocked" offsetx="0.125" offsety="0">
-  <object id="45" x="48" y="64" width="16" height="16"/>
-  <object id="54" x="80" y="88" width="16" height="16"/>
-  <object id="65" x="32" y="80" width="48" height="32"/>
-  <object id="69" x="128.875" y="32" width="30.0909" height="40"/>
-  <object id="72" x="176.542" y="105.667" width="31.4583" height="22.3333"/>
-  <object id="73" x="32" y="0" width="48" height="32"/>
-  <object id="74" x="96" y="0" width="112" height="32"/>
-  <object id="75" x="208" y="32" width="32" height="96"/>
-  <object id="77" x="32" y="128" width="176" height="32"/>
-  <object id="80" x="0" y="32" width="32" height="96"/>
-  <object id="81" x="80" y="0" width="16" height="16"/>
-  <object id="82" x="176.784" y="32" width="31.1818" height="39.8182"/>
- </objectgroup>
- <objectgroup name="door">
-  <object id="31" x="80" y="16" width="16" height="16"/>
+ <objectgroup name="blocked">
+  <object id="3" x="32" y="0" width="48" height="32"/>
+  <object id="4" x="96" y="0" width="112" height="32"/>
+  <object id="6" x="208" y="32" width="32" height="96"/>
+  <object id="8" x="32" y="128" width="176" height="32"/>
+  <object id="10" x="0" y="32" width="32" height="96"/>
+  <object id="11" x="80" y="0" width="16" height="16"/>
+  <object id="12" x="48" y="64" width="16" height="16"/>
+  <object id="15" x="32" y="80" width="48" height="32"/>
+  <object id="16" x="80" y="88" width="16" height="16"/>
+  <object id="18" x="176" y="104" width="32" height="24"/>
+  <object id="20" x="128" y="32" width="32" height="40"/>
+  <object id="21" x="176" y="32" width="32" height="40"/>
  </objectgroup>
  <objectgroup name="NPC"/>
- <objectgroup name="Screen">
-  <object id="44" x="0" y="0" width="240" height="160"/>
+ <objectgroup name="Screen" visible="0">
+  <object id="2" x="0" y="0" width="240" height="160"/>
+ </objectgroup>
+ <objectgroup name="door">
+  <object id="22" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="Destino" value="link_house1.tmx"/>
+    <property name="PosicaoX" value="96"/>
+    <property name="PosicaoY" value="32"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

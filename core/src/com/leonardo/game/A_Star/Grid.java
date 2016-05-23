@@ -49,7 +49,7 @@ public class Grid {
                 grid[x][y] = new Node(foundNodeNotWalkable(x,y), worldPoint, x, y);
             }
         }
-
+        /*
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -73,6 +73,7 @@ public class Grid {
                 }
             }
         }
+         */
     }
 
     public ArrayList<Node> GetNeighbours(Node node) {

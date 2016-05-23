@@ -66,8 +66,7 @@ public class GameScreen implements Screen{
         //Tiled Map
         maploader = new TmxMapLoader();
         //defineScreen("South_Hyrule_Field.tmx");
-        //defineScreen("link_house.tmx");
-        defineScreen("teste.tmx");
+        defineScreen("Maps/link_house2.tmx");
     }
 
     public void defineScreen(String level){
@@ -85,9 +84,6 @@ public class GameScreen implements Screen{
         world.setContactListener(new WorldContactListener(player));
         MapObject object = map.getLayers().get("Screen").getObjects().get(0);
         screenDimensions = ((RectangleMapObject) object).getRectangle();
-        System.out.println(screenDimensions.getWidth());
-        System.out.println(screenDimensions.getHeight());
-        System.out.println(player.getBody().getPosition());
         grid = new Grid(world, map, b2Creator, 8, (int)(screenDimensions.getWidth()),(int)(screenDimensions.getHeight()));
     }
 
@@ -153,8 +149,8 @@ public class GameScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
-        path = grid.Find(enemie.b2body.getPosition(), new Vector2(player.b2body.getPosition().x + (5/GameManager.getInstance().getPPM()),player.b2body.getPosition().y + (5/GameManager.getInstance().getPPM())));
-        enemie.update(dt, path, player);
+        //path = grid.Find(enemie.b2body.getPosition(), new Vector2(player.b2body.getPosition().x + (5/GameManager.getInstance().getPPM()),player.b2body.getPosition().y + (5/GameManager.getInstance().getPPM())));
+        //enemie.update(dt, path, player);
         posCam = getPosCam(new Vector2(gamecam.position.x, gamecam.position.y), new Vector2( player.getX() + (player.getWidth() / 2), player.getY()+ (player.getHeight() / 2 - 0.08f)));
         gamecam.position.set(posCam.x, posCam.y, 0);
         gamecam.update();

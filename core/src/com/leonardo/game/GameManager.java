@@ -16,6 +16,13 @@ public class GameManager extends Game {
 	private int HEIGHT = 160;
 	private float PPM = 100f;
 
+    public static final short DEFAULT_BIT = 1;
+    public static final short PLAYER_BIT = 2;
+    public static final short VASO_BIT = 4;
+    public static final short CHEST_BIT = 8;
+    public static final short DESTROYED_BIT = 16;
+    public static final short OPENED = 32;
+
 	//Construtor
 	public GameManager() {
 	}
@@ -64,4 +71,27 @@ public class GameManager extends Game {
 		gameManager.HEIGHT = height;
 	}
 
+    public short getDefaultBit() {
+        return DEFAULT_BIT;
+    }
+
+    public short getPlayerBit() {
+        return PLAYER_BIT;
+    }
+
+    public short getVasoBit() {
+        return VASO_BIT;
+    }
+
+    public short getDestroyedBit() {
+        return DESTROYED_BIT;
+    }
+
+    public short getChestBit() {
+        return CHEST_BIT;
+    }
+
+    public short getOPENED() {
+        return OPENED;
+    }
 }

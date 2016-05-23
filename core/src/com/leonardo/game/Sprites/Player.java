@@ -19,7 +19,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.leonardo.game.GameManager;
 import com.leonardo.game.Screens.GameScreen;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 
 /**
  *
@@ -277,10 +276,16 @@ public class Player extends Sprite{
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(4f / GameManager.getInstance().getPPM(), 4 / GameManager.getInstance().getPPM());
+        fdef.filter.categoryBits = GameManager.getInstance().getPlayerBit();
+        fdef.filter.maskBits =
+                GameManager.DEFAULT_BIT|
+                GameManager.CHEST_BIT |
+                GameManager.VASO_BIT;
 
         fdef.shape = shape;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData("bodyPlayer");
 
+        //Area de attack
         CircleShape areaOfAttack = new CircleShape();
         areaOfAttack.setRadius(20f / GameManager.getInstance().getPPM());
         areaOfAttack.setPosition(new Vector2(areaOfAttack.getPosition().x, areaOfAttack.getPosition().y + (6 / GameManager.getInstance().getPPM())));

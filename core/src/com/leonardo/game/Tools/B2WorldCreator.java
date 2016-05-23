@@ -11,6 +11,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.leonardo.game.GameManager;
+import com.leonardo.game.Sprites.Chest;
+import com.leonardo.game.Sprites.Door;
+import com.leonardo.game.Sprites.Vaso;
 
 import java.util.ArrayList;
 
@@ -21,18 +24,22 @@ public class B2WorldCreator {
     private World world;
     private TiledMap map;
     private ArrayList<Node_Grid> objects;
+    private ArrayList<Door> door;
 
     public B2WorldCreator(World world, TiledMap map){
         this.world = world;
         this.map = map;
         this.objects = new ArrayList<Node_Grid>();
+        this.door = new ArrayList<Door>();
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
 
         Body body;
         createBody("blocked", false);
-        //createBody("door", true);//door
+        createVaso();
+        createChest();
+        createDoor();
     }
 
     private void createBody(String _layer, boolean _walkable){
@@ -59,20 +66,20 @@ public class B2WorldCreator {
             body.createFixture(fdef);
         }
     }
-    private void createBody(int layer){
+
+    private void createDoor(){
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
 
         Body body;
-        //Desenha as portas
-        for (MapObject object : map.getLayers().get(layer).getObjects()) {
+        //Desenha os objetos bloqueados
+        for (MapObject object : map.getLayers().get("door").getObjects()) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
             bdef.type = BodyDef.BodyType.StaticBody;
             //Seta a posição do objeto
             bdef.position.set((rect.getX() + rect.getWidth() / 2) / GameManager.getInstance().getPPM(), (rect.getY() + rect.getHeight() / 2) / GameManager.getInstance().getPPM());
-
+            getObjects().add(new Node_Grid(new Vector2(rect.getX(), rect.getY()), new Vector2(rect.getX() + rect.getWidth(),rect.getY()+ rect.getHeight()), false));
             body = world.createBody(bdef);
 
             shape.setAsBox(rect.getWidth() / 2 / GameManager.getInstance().getPPM(), rect.getHeight() / 2 / GameManager.getInstance().getPPM());
@@ -82,6 +89,32 @@ public class B2WorldCreator {
         }
     }
 
+    private void createVaso(){
+        BodyDef bdef = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fdef = new FixtureDef();
+
+        Body body;
+        //Desenha os objetos bloqueados
+        for (MapObject object : map.getLayers().get("vaso").getObjects()) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Vaso(world, map, rect);
+        }
+    }
+    private void createChest(){
+        BodyDef bdef = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fdef = new FixtureDef();
+
+        Body body;
+        //Desenha os objetos bloqueados
+        for (MapObject object : map.getLayers().get("chest").getObjects()) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Chest(world, map, rect);
+        }
+    }
     public ArrayList<Node_Grid> getObjects() {
         return objects;
     }
