@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="8" tileheight="8" nextobjectid="77">
+ <tileset firstgid="1" name="link_house2" tilewidth="8" tileheight="8" tilecount="600" columns="30">
+  <image source="link_house2.png" width="240" height="160"/>
+ </tileset>
+ <tileset firstgid="601" name="link_house2_itens" tilewidth="8" tileheight="8" tilecount="600" columns="30">
+  <image source="link_house2_itens.png" width="240" height="160"/>
+ </tileset>
+ <layer name="background" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwV1YOyGAYAAMEX27Zt27Zt22hs27Zt27Zts0EbJ93O3H7DBQoICAhMEIISjOCEICShCE0YwhKO8EQgIpGITBSiEo3oxCAmsYhNHOISj/gkICGJSEwSkpKM5KQgJalITRrSko70ZCAjmchMFrKSjezkICe5yE0e8pKP/BSgIIUoTBGKUozilKAkpShNGcpSjvJUoCKVqEwVqlKN6tSgJrWoTR3qUo/6NKAhjWhME5rSjOa0oCWtaE0b2tKO9nSgI53oTBe60o3u/EUPetKL3vShL/3ozwAGMojBDGEowxjOCEYyitGMYSzjGM8EJjKJyUxhKtOYzgxmMovZzGEu85jPAhayiMUsYSnLWM4KVrKK1axhLetYzwY2sonNbGEr29jODnayi93sYS/72M8BDnKIwxzhKMc4zglOcorTnOEs5zjPBS5yictc4SrXuM4NbnKL29zhLve4zwMe8ojHPOEpz3jOC17yite84S3veM/ffOAjn/jMP/zLF77yje/84Ce/+M0fAgKJwAQhKMEITghCEorQhCEs4QhPBCISichEISrRiE4MYhKL2MQhLvGITwISkojEJCEpyUhOClKSitSkIS3pSE8GMpKJzGQhK9nITg5ykovc5CEv+chPAQpSiMIUoSjFKE4JSlKK0pShLOUoTwUqUonKVKEq1ahODWpSi9rUoS71qE8DGtKIxjShKc1oTgta0orWtKEt7WhPBzrSic50oSvd6M5f9KAnvehNH/rSj/4MYCCDGMwQhjKM4YxgJKMYzRjGMo7xTGAik5jMFKYyjenMYCazmM0c5jKP+SxgIYtYzBKWsozlrGAlq1jNGtayjvVsYCOb2MwWtrKN7exgJ7vYzR72so/9HOAghzjMEY5yjOOc4CSnOM0ZznKO81zgIpe4zBWuco3r3OAmt7jNHe5yj/s84CGPeMwTnvKM57zgJa94zRve8o73/M0HPvKJz/zDv3zhK9/4zg9+8ovf/OH/8QciMEEISjCCE4KQhCI0YQhLOMITgYhEIjJRiEo0ohODmMQiNnGISzzik4CEJCIxSUhKMpKTgpSkIjVpSEs60pOBjGQiM1nISjayk4Oc5CI3echLPvJTgIIUojBFKEoxilOCkpSiNGUoSznKU4GKVKIyVahKNapTg5r8B03FEA4=
+  </data>
+ </layer>
+ <layer name="objects" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzl0wOSIAYAAMHNIWfbtm3btm3bTM62bdu2bdu20//IVPUTpkaggICa1KI2dahLPerTgIY0ojFNaEozmtOClrSiNW1oSzva04GOdKIzXehKN7rTg570ojd96Es/+jOAgQxiMP/wL0MYyjCGM4KRjGI0YxjLOMYzgYlMYjJTmMo0pjODmcxiNnOYyzzms4CFLGIxS1jKMpazgpWsYjVrWMs61rOBjWxiM1vYyja2s4Od7GI3e9jLPvZzgIMc4jBHOMoxjnOCk5ziNGc4yznOc4GLXOIyV7jKNa5zg5vc4jZ3uMs97vOAhzziMU94yjOe84KXvOI1b3jLO97zgY984jNf+Mo3vvODn/ziN38ICBwQ8BeBCEwQgvI3wQhOCEISitCEISzhCE8EIhKJyEQhKtGITgxiEovYxCEu8YhPAhKSiMQkISnJSE4KUpKK1KQhLelITwYykonMZCEr2chODnKSi9zkIS/5yE8BClKIwhShKMUoTglKUorSlKEs5ShPBSpSicpUoSrVqE4NalKL2tShLvWoTwMa0ojGNKEpzWhOC1rSita0oS3taE8HOtKJznShK93oTg960ove9KEv/ejPAAYyiMH8w78MYSjDGM4IRjKK0YxhLOMYzwQmMonJTGEq05jODGYyi9nMYS7zmM8CFrKIxSxhKctYzgpWsorVrGEt61jPBjayic1sYSvb2M4OdrKL3exhL/vYzwEOcojDHOEoxzjOCU5yitOc4SznOM8FLnKJy1zhKte4zg1ucovb3OEu97jPAx7yiMc84SnPeM4LXvKK17zhLe94zwc+8onPfOEr3/jOD37yi9/8ISCI/wlEYIIQlL8JRnBCEJJQhCYMYQlHeCIQkUhEJgpRiUZ0YhCTWMQmDnGJR3wSkJBEJCYJSUlGclKQklSkJg1pSUd6MpCRTGQmC1nJRnZykJNc5CYPeclHfgpQkEIUpghFKUZxSlCSUpSmDGUpR3kqUJFKVKYKValGdWpQk1rUpg51qUd9GtCQRjSmCU1pRnNa0JJWtKYNbWlHezrQkU505v/Wf7xDEGg=
+  </data>
+ </layer>
+ <objectgroup name="blocked">
+  <object id="52" x="152" y="96" width="48" height="21.8182"/>
+  <object id="53" x="200" y="99.0909" width="8" height="8.90909"/>
+  <object id="55" x="32" y="0" width="176" height="32"/>
+  <object id="58" x="208" y="32" width="32" height="96"/>
+  <object id="60" x="32" y="128" width="176" height="32"/>
+  <object id="61" x="0" y="96" width="32" height="32"/>
+  <object id="62" x="0" y="80" width="16" height="16"/>
+  <object id="63" x="0" y="32" width="32" height="48"/>
+  <object id="64" x="160" y="80" width="16" height="16"/>
+  <object id="65" x="144" y="77.8182" width="16" height="18.1818"/>
+  <object id="66" x="176" y="32" width="32" height="20"/>
+  <object id="67" x="144" y="32" width="32" height="17.8182"/>
+  <object id="68" x="96" y="32" width="48" height="14"/>
+ </objectgroup>
+ <objectgroup name="NPC">
+  <object id="69" x="176" y="80" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Screen" visible="0">
+  <object id="2" x="0" y="0" width="240" height="160"/>
+ </objectgroup>
+ <objectgroup name="door">
+  <properties>
+   <property name="Destino" value="link_house1.tmx"/>
+   <property name="PosicaoX" value="1"/>
+   <property name="PosicaoY" value="1"/>
+  </properties>
+  <object id="32" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="Destino" value="link_house2.tmx"/>
+    <property name="PosicaoX" value="32"/>
+    <property name="PosicaoY" value="88"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="vaso">
+  <object id="70" x="32" y="32" width="16" height="16"/>
+  <object id="72" x="32" y="48" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="chest">
+  <object id="73" x="80" y="32" width="16" height="16"/>
+ </objectgroup>
+</map>

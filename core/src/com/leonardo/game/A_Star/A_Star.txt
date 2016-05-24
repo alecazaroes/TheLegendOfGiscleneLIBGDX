@@ -1,0 +1,23 @@
+ABERTO // o conjunto de nós para ser avaliado
+FECHADO // o conjunto de nós já avaliados
+adicionar o nó inicial em ABERTO
+
+laço
+	CORRENTE = nó em aberto com o menor f_cost
+	remover CORRENTE de ABERTO
+	adicionar CORRENTE para FECHADO
+
+	Se a CORRENTE é o nó de destino // caminho foi encontrado
+		Retorna
+
+
+	para cada VIZINHO do nó CORRENTE
+		se VIZINHO não é atravessavel ou VIZINHO está em FECHADO
+			pule para o próximo VIZINHO
+
+
+		se novo caminho para VIZINHO é mais curto ou VIZINHO não está em ABERTO
+			define f_cost de VIZINHO
+			define o parente de VIZINHO para CORRENTE
+			se VIZINHO não está na ABERTO
+				adicionar VIZINHO para OPEN
